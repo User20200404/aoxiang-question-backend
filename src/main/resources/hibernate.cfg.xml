@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--该文件是用于配置Hibernate框架的主配置文件，在这里定义Hibernate框架的行为和要使用的映射文件-->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--在这里配置PostgreSQL数据库URL，注意格式-->
+        <property name="connection.url">jdbc:postgresql://localhost:9200/aoxiang-question</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">rawgb773</property>
+
+        <!--自动建立和更新表-->
+        <property name="hbm2ddl.auto">create</property>
+
+        <!--在这里加载所有映射类，或映射配置文件-->
+        <mapping class="com.npu.aoxiangbackend.model.User"/>
+    </session-factory>
+</hibernate-configuration>
