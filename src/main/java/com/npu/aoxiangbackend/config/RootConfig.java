@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 // 定义为配置类
 @Configuration
 // 引入数据库配置类
-@Import(BeanConfig.class)
+@Import({BeanConfig.class})
 // 定义Spring 扫描的包名，采用自定义扫描类WebPackage
 @ComponentScan(basePackages = {"com.npu.aoxiangbackend"}, excludeFilters = {@Filter(type = FilterType.ANNOTATION)})
 public class RootConfig {

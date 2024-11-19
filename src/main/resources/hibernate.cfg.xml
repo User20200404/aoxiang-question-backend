@@ -12,7 +12,7 @@
         <property name="connection.password">rawgb773</property>
 
         <!--自动建立和更新表-->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <!--在这里加载所有映射类，或映射配置文件-->
         <mapping class="com.npu.aoxiangbackend.model.User"/>

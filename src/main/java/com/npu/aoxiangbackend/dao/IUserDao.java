@@ -5,7 +5,7 @@ import com.npu.aoxiangbackend.model.User;
 import java.util.Optional;
 
 public interface IUserDao {
-    public Optional<User> findUserById(int id);
+    public Optional<User> findUserById(long id);
 
     public Optional<User> findUserByEmail(String email);
 
@@ -15,5 +15,5 @@ public interface IUserDao {
 
     public boolean updateUser(User user);
 
-    public boolean deleteUser(int id);
+    public boolean deleteUser(long id);
 }

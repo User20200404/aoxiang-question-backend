@@ -10,44 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d13a1a2-b276-48b8-b9ef-a379bac3cafe" name="Changes" comment="环境配置">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aoxiang-question-backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/postgresql-42.7.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/BeanConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/RootConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/WebInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/ISurveyDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/IUserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/SurveyDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Answer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Draft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Option.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Question.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Survey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/SurveySetting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/util/HibernateUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/JsonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/protocol/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/protocol/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/protocol/ResponseStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/util/ColoredPrintStream.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/util/ConsoleUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/springmvc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aoxiang-question-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aoxiang-question-backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/BeanConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/BeanConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/RootConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/RootConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/IUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/util/HibernateUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +41,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTTP Public Environment File" />
       </list>
     </option>
   </component>
@@ -93,7 +76,7 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -110,31 +93,38 @@
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
     "HTTP Request.All in generated-requests.executor": "Run",
+    "HTTP Request.All in rest-api_1.executor": "Run",
+    "HTTP Request.rest-api_1 | #2.executor": "Run",
+    "HTTP Request.rest-api_1 | 注册.executor": "Run",
+    "HTTP Request.rest-api_1 | 注销.executor": "Run",
+    "HTTP Request.rest-api_1 | 登录.executor": "Run",
+    "HTTP Request.rest-api_1 | 获取用户信息.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 10.1.28.executor": "Run",
-    "Tomcat Server.Tomcat 9.0.96.executor": "Run",
+    "Tomcat Server.Tomcat 9.0.96.executor": "Debug",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/NPU/Web系统开发与实践/Final/Project/aoxiang-question-backend",
+    "last_opened_file_path": "D:/NPU/Web系统开发与实践/Final/Project/aoxiang-question-backend/src/main/java/com/npu/aoxiangbackend/util",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.1512081",
-    "project.structure.side.proportion": "0.3429752",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "project.structure.side.proportion": "0.46446282",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\NPU\Web系统开发与实践\Final\Project\aoxiang-question-backend\src\main\java\com\npu\aoxiangbackend\util" />
       <recent name="D:\NPU\Web系统开发与实践\Final\Project\aoxiang-question-backend\src\lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -149,7 +139,19 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.96">
-    <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
+    <configuration name="rest-api_1 | 注册" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" requestIdentifier="注册" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api_1 | 登录" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="2" requestIdentifier="登录" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api_1 | 获取用户信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="4" requestIdentifier="获取用户信息" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api_1 | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="2" requestIdentifier="#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api_1 | 注销" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="3" requestIdentifier="注销" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 9.0.96" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.96" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -258,12 +260,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.All in generated-requests" />
+      <item itemvalue="HTTP Request.rest-api_1 | #2" />
+      <item itemvalue="HTTP Request.rest-api_1 | 注册" />
+      <item itemvalue="HTTP Request.rest-api_1 | 注销" />
+      <item itemvalue="HTTP Request.rest-api_1 | 登录" />
+      <item itemvalue="HTTP Request.rest-api_1 | 获取用户信息" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.96" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.All in generated-requests" />
+        <item itemvalue="HTTP Request.rest-api_1 | 获取用户信息" />
+        <item itemvalue="HTTP Request.rest-api_1 | 登录" />
+        <item itemvalue="HTTP Request.rest-api_1 | 注册" />
+        <item itemvalue="HTTP Request.rest-api_1 | 注销" />
+        <item itemvalue="HTTP Request.rest-api_1 | #2" />
       </list>
     </recent_temporary>
   </component>
@@ -287,7 +297,7 @@
       <workItem from="1731936455002" duration="6173000" />
       <workItem from="1731989597367" duration="1127000" />
       <workItem from="1731990766220" duration="7268000" />
-      <workItem from="1731998779441" duration="149000" />
+      <workItem from="1731998779441" duration="12994000" />
     </task>
     <task id="LOCAL-00001" summary="环境配置">
       <option name="closed" value="true" />
@@ -329,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731998484630</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="环境配置">
+      <option name="closed" value="true" />
+      <created>1731998941111</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731998941111</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

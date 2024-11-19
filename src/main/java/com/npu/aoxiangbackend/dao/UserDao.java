@@ -18,7 +18,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public Optional<User> findUserById(int id) {
+    public Optional<User> findUserById(long id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             User user = session.get(User.class, id);
@@ -72,7 +72,7 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public boolean deleteUser(int id) {
+    public boolean deleteUser(long id) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             User user = session.get(User.class, id);

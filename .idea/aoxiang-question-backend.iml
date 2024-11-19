@@ -19,7 +19,11 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/npu/aoxiangbackend/config/ContactAppConfig.java</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
 </module>
