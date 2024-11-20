@@ -1,8 +1,10 @@
 package com.npu.aoxiangbackend.service;
 
 import cn.dev33.satoken.stp.StpUtil;
-import cn.dev33.satoken.util.SaResult;
 import com.npu.aoxiangbackend.dao.IUserDao;
+import com.npu.aoxiangbackend.exception.business.UserServiceException;
+import com.npu.aoxiangbackend.exception.internal.DatabaseAccessException;
+import com.npu.aoxiangbackend.exception.internal.InternalException;
 import com.npu.aoxiangbackend.model.Option;
 import com.npu.aoxiangbackend.model.User;
 import com.npu.aoxiangbackend.protocol.RegisterRequest;
@@ -25,20 +27,32 @@ public class UserService {
         this.printer = coloredPrintStream;
     }
 
-    public SaResult registerUser(RegisterRequest req) {
-        var username = req.getUsername();
-        var password = req.getPassword();
+    public void throwOnInvalidRegister(String username, String password) throws UserServiceException, DatabaseAccessException {
         if (username.length() < 4 || username.length() > 40) {
-            return SaResult.error("用户名的长度必须在4和40之间。");
+            throw new UserServiceException("用户名长度必须在4和40之间。");
         }
 
         if (password.length() < 6 || password.length() > 64) {
-            return SaResult.error("用户名的长度必须在6和64之间。");
+            throw new UserServiceException("密码长度必须在6和64之间。");
         }
 
-        if (userDao.findUserByUsername(username).isPresent()) {
-            return SaResult.error(String.format("用户名为\"%s\"的账户已经存在。", req.getUsername()));
+        Optional<User> userOptional;
+
+        try {
+            userOptional = userDao.findUserByUsername(username);
+        } catch (Exception exception) {
+            throw new DatabaseAccessException();
         }
+        if (userOptional.isPresent()) {
+            throw new UserServiceException(String.format("用户名为\"%s\"的用户已经存在。", username));
+        }
+    }
+
+    public void registerUser(RegisterRequest req) throws UserServiceException, DatabaseAccessException {
+        var username = req.getUsername();
+        var password = req.getPassword();
+
+        throwOnInvalidRegister(username, password);
 
         User user = new User();
         user.setUsername(req.getUsername());
@@ -52,43 +66,68 @@ public class UserService {
         try {
             userDao.addUser(user);
         } catch (Exception e) {
-            printer.longPrintException(e);
-            return SaResult.error("内部错误。");
+            printer.shortPrintException(e);
+            throw new DatabaseAccessException(e);
         }
-        return SaResult.ok("用户注册成功！");
     }
 
-    public SaResult loginUser(String userName, String password) {
-        var userOptional = userDao.findUserByUsername(userName);
+    public String loginUser(String userName, String password) throws InternalException, UserServiceException {
+        Optional<User> userOptional;
+        try {
+            userOptional = userDao.findUserByUsername(userName);
+        } catch (Exception e) {
+            throw new DatabaseAccessException(e);
+        }
         if (userOptional.isEmpty()) {
-            return SaResult.error("用户不存在。");
+            throw new UserServiceException("用户不存在。");
         }
         var user = userOptional.get();
         if (!user.getPassword().equals(password)) {
-            return SaResult.error("用户名或密码错误。");
+            throw new UserServiceException("用户名或密码错误。");
         }
-        StpUtil.createLoginSession(user.getId());
-        return SaResult.ok("登录成功。").setData(StpUtil.getTokenValueByLoginId(user.getId()));
+        try {
+            StpUtil.createLoginSession(user.getId());
+            return StpUtil.getTokenValueByLoginId(user.getId());
+        } catch (Exception e) {
+            throw new InternalException("未知错误。", e);
+        }
     }
 
-    public SaResult logoutUser(String token) {
+    public void logoutUser(String token) throws UserServiceException, InternalException {
+        throwOnInvalidToken(token);
         try {
             StpUtil.logoutByTokenValue(token);
-            return SaResult.ok("您已成功注销。");
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             printer.shortPrintException(e);
-            return SaResult.error("未知错误。");
+            throw new InternalException(e);
         }
     }
 
-    public Optional<User> getUser(String token) {
+    public User getUser(String tokenValue) throws UserServiceException, DatabaseAccessException {
+        var token = StpUtil.getLoginIdByToken(tokenValue);
+        if (token == null)
+            throw new UserServiceException("提供的token无效。");
+        long userId = Long.parseLong(token.toString());
+
+        Optional<User> userOptional;
         try {
-            var userId = Long.parseLong((String) StpUtil.getLoginIdByToken(token));
-            return userDao.findUserById(userId);
+            userOptional = userDao.findUserById(userId);
         } catch (Exception e) {
             printer.shortPrintException(e);
-            return Optional.empty();
+            throw new DatabaseAccessException(e);
+        }
+        if (userOptional.isEmpty())
+            throw new UserServiceException("无法找到指定用户。");
+        return userOptional.get();
+    }
+
+    public boolean isTokenValid(String token) {
+        return StpUtil.getLoginIdByToken(token) != null;
+    }
+
+    public void throwOnInvalidToken(String tokenValue) throws UserServiceException {
+        if (!isTokenValid(tokenValue)) {
+            throw new UserServiceException("提供的token无效。");
         }
     }
 }

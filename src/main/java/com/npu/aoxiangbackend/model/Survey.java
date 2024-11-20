@@ -1,6 +1,7 @@
 package com.npu.aoxiangbackend.model;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 import java.time.ZonedDateTime;
@@ -10,7 +11,7 @@ import java.time.ZonedDateTime;
 @Table(name = "surveys")
 public class Survey {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @Column(nullable = false)
@@ -32,8 +33,9 @@ public class Survey {
 
     @Column(nullable = false)
     private boolean loginRequired;
+
+    @Column(nullable = false)
     private int totalResponses;
-    private String backgroundUrl;
 
     @Column(nullable = false)
     private ZonedDateTime createdAt;

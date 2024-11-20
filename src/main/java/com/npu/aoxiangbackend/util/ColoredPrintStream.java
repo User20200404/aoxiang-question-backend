@@ -124,6 +124,12 @@ public class ColoredPrintStream extends PrintStream {
         var traces = Thread.currentThread().getStackTrace();
         if (traces.length <= 2) return "";
         var traceOptional = Arrays.stream(traces).skip(2).filter(t -> !t.getClassName().equals(this.getClass().getName())).findAny();
-        return traceOptional.map(t -> t.getClass().getSimpleName() + "." + t.getMethodName()).orElse("");
+        return traceOptional.map(t -> {
+            try {
+                return Class.forName(t.getClassName()).getSimpleName() + "." + t.getMethodName();
+            } catch (ClassNotFoundException e) {
+                return "#ERROR";
+            }
+        }).orElse("");
     }
 }
