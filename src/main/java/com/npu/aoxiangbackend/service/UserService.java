@@ -104,10 +104,7 @@ public class UserService {
     }
 
     public User getUser(String tokenValue) throws UserServiceException, DatabaseAccessException {
-        var token = StpUtil.getLoginIdByToken(tokenValue);
-        if (token == null)
-            throw new UserServiceException("提供的token无效。");
-        long userId = Long.parseLong(token.toString());
+        long userId = checkAndGetUserId(tokenValue);
 
         Optional<User> userOptional;
         try {
@@ -123,6 +120,13 @@ public class UserService {
 
     public boolean isTokenValid(String token) {
         return StpUtil.getLoginIdByToken(token) != null;
+    }
+
+    public long checkAndGetUserId(String tokenValue) throws UserServiceException {
+        var token = StpUtil.getLoginIdByToken(tokenValue);
+        if (token == null)
+            throw new UserServiceException("提供的token无效。");
+        return Long.parseLong(token.toString());
     }
 
     public void throwOnInvalidToken(String tokenValue) throws UserServiceException {

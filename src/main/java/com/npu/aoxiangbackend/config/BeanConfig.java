@@ -24,7 +24,7 @@ public class BeanConfig {
             // 创建 SessionFactory 对象
             return new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
-            System.err.println("Hibernate 初始化失败！" + ex);
+            System.err.println("Hibernate initialization failed, check if you have started the db service :" + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }

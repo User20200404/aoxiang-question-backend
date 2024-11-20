@@ -12,7 +12,12 @@ public interface ISurveyDao {
 
     public List<Survey> findSurveysByUserId(long userId);
 
-    public boolean addSurvey(Survey survey);
+    /**
+     * 将指定的问卷对象添加到数据库，返回自动创建的主键uuid。
+     * @param survey 问卷对象。
+     * @return 问卷的uuid。
+     */
+    public String addSurvey(Survey survey);
 
     public boolean updateSurvey(Survey survey);
 

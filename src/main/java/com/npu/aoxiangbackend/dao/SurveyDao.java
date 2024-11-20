@@ -44,7 +44,7 @@ public class SurveyDao implements ISurveyDao {
     public List<Survey> findSurveysByUserId(long userId) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            var query = session.createQuery("from Survey where user.id = :userId", Survey.class);
+            var query = session.createQuery("from Survey where creatorId = :userId", Survey.class);
             query.setParameter("userId", userId);
             var surveys = query.getResultList();
             session.getTransaction().commit();
@@ -53,12 +53,12 @@ public class SurveyDao implements ISurveyDao {
     }
 
     @Override
-    public boolean addSurvey(Survey survey) {
+    public String addSurvey(Survey survey) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.save(survey);
+            String surveyId = (String) session.save(survey);
             session.getTransaction().commit();
-            return true;
+            return surveyId;
         }
     }
 

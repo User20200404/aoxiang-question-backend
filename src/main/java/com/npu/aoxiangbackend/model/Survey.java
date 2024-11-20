@@ -1,6 +1,7 @@
 package com.npu.aoxiangbackend.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -11,19 +12,22 @@ import java.time.ZonedDateTime;
 @Table(name = "surveys")
 public class Survey {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "idGenerator")
+    @GenericGenerator(name = "idGenerator", strategy = "uuid")
     private String id;
 
     @Column(nullable = false)
     private String title;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
+    @Column(nullable = false)
+    private long creatorId;
 
     @Column(nullable = false)
     private boolean isPublic;
+
+    @Column(nullable = false)
+    private boolean isInitialized;
 
     @Column(nullable = false)
     private ZonedDateTime startTime;

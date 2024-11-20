@@ -13,9 +13,8 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
 
-    @JoinColumn(name = "survey_id", nullable = false, referencedColumnName = "id")
-    @ManyToOne
-    private Survey sourceSurvey;
+    @Column(nullable = false)
+    private String sourceSurveyId;
 
     @Column(nullable = false)
     private String type;
