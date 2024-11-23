@@ -9,17 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d13a1a2-b276-48b8-b9ef-a379bac3cafe" name="Changes" comment="不再使用Hibernate的关联对象映射特性（例如直接在Survey中声明一个User属性），因为这会导致把User的所有属性也传给前端。&#10;问卷创建和查询基本功能。">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/QuestionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/IQuestionDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/QuestionDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aoxiang-question-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aoxiang-question-backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" />
+    <list default="true" id="5d13a1a2-b276-48b8-b9ef-a379bac3cafe" name="Changes" comment="完善了Survey部分的功能，创建Question数据库访问">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/exception/business/QuestionServiceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/QuestionType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/SurveyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/SurveyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/IQuestionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/IQuestionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/QuestionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/QuestionDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/QuestionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/SurveyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/SurveyService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +30,7 @@
       <list>
         <option value="HTTP Public Environment File" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -295,7 +294,7 @@
       <workItem from="1732198783941" duration="300000" />
       <workItem from="1732256213576" duration="923000" />
       <workItem from="1732263272052" duration="90000" />
-      <workItem from="1732355866365" duration="7665000" />
+      <workItem from="1732355866365" duration="18528000" />
     </task>
     <task id="LOCAL-00001" summary="环境配置">
       <option name="closed" value="true" />
@@ -361,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732108539758</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="完善了Survey部分的功能，创建Question数据库访问">
+      <option name="closed" value="true" />
+      <created>1732368346825</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732368346825</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,6 +392,7 @@
     <MESSAGE value="环境配置" />
     <MESSAGE value="用户模块重写" />
     <MESSAGE value="不再使用Hibernate的关联对象映射特性（例如直接在Survey中声明一个User属性），因为这会导致把User的所有属性也传给前端。&#10;问卷创建和查询基本功能。" />
-    <option name="LAST_COMMIT_MESSAGE" value="不再使用Hibernate的关联对象映射特性（例如直接在Survey中声明一个User属性），因为这会导致把User的所有属性也传给前端。&#10;问卷创建和查询基本功能。" />
+    <MESSAGE value="完善了Survey部分的功能，创建Question数据库访问" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善了Survey部分的功能，创建Question数据库访问" />
   </component>
 </project>

@@ -8,11 +8,13 @@ import java.util.Optional;
 public interface IQuestionDao {
     long addQuestion(Question question);
 
-    Optional<Question> findQuestionById(String id);
+    Optional<Question> findQuestionById(long id);
+
+    int getQuestionCountOfSurvey(String surveyID);
 
     List<Question> findQuestionsBySurveyId(String surveyId);
 
-    void deleteQuestion(String id);
+    boolean deleteQuestion(long id);
 
-    void updateQuestion(Question question);
+    boolean updateQuestion(Question question);
 }

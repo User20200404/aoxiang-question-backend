@@ -203,5 +203,23 @@ public class SurveyService {
         }
     }
 
+    public boolean canViewSurvey(String surveyId, String tokenValue) throws DatabaseAccessException {
+        try {
+            accessSurvey(surveyId, tokenValue);
+            return true;
+        } catch (SurveyServiceException | UserServiceException e) {
+            return false;
+        }
+    }
+
+    public boolean canEditSurvey(String surveyId, String tokenValue) throws DatabaseAccessException {
+        try {
+            getRequiredSurveyAndCheckLogin(surveyId, tokenValue, true);
+            return true;
+        } catch (SurveyServiceException | UserServiceException e) {
+            return false;
+        }
+    }
+
 
 }
