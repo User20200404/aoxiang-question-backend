@@ -1,13 +1,10 @@
 package com.npu.aoxiangbackend.service;
 
-import cn.dev33.satoken.stp.StpUtil;
-import cn.dev33.satoken.util.SaResult;
 import com.npu.aoxiangbackend.dao.ISurveyDao;
 import com.npu.aoxiangbackend.exception.business.SurveyServiceException;
 import com.npu.aoxiangbackend.exception.business.UserServiceException;
 import com.npu.aoxiangbackend.exception.internal.DatabaseAccessException;
 import com.npu.aoxiangbackend.model.Survey;
-import com.npu.aoxiangbackend.model.User;
 import com.npu.aoxiangbackend.util.ColoredPrintStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,19 +87,8 @@ public class SurveyService {
      * @throws SurveyServiceException  如果问卷不存在，或当前没有访问权限。
      * @throws UserServiceException    如果需要登录验证，且提供的token无效。
      */
-    public Survey getSurvey(String surveyId, String tokenValue) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
-        Optional<Survey> surveyOptional;
-        try {
-            surveyOptional = surveyDao.findSurveyById(surveyId);
-        } catch (Exception e) {
-            printer.shortPrintException(e);
-            throw new DatabaseAccessException(e);
-        }
-
-        if (surveyOptional.isEmpty()) {
-            throw new SurveyServiceException(String.format("该问卷不存在：%s", surveyId));
-        }
-        Survey survey = surveyOptional.get();
+    public Survey accessSurvey(String surveyId, String tokenValue) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
+        Survey survey = getRequiredSurvey(surveyId);
 
         boolean loginRequired = survey.isLoginRequired();
         boolean isPublic = survey.isPublic();
@@ -125,4 +111,97 @@ public class SurveyService {
 
         throw new SurveyServiceException("该问卷由其他用户创建，且暂未公开。");
     }
+
+    /**
+     * 根据surveyId从数据库获取Survey对象，这个方法会在未找到时抛出异常。
+     *
+     * @param surveyId Survey标识符
+     * @return 问卷对象
+     * @throws DatabaseAccessException 如果数据库访问失败
+     * @throws SurveyServiceException  如果问卷不存在
+     */
+    private Survey getRequiredSurvey(String surveyId) throws DatabaseAccessException, SurveyServiceException {
+        Optional<Survey> surveyOptional;
+        try {
+            surveyOptional = surveyDao.findSurveyById(surveyId);
+        } catch (Exception e) {
+            printer.shortPrintException(e);
+            throw new DatabaseAccessException(e);
+        }
+
+        if (surveyOptional.isEmpty()) {
+            throw new SurveyServiceException(String.format("该问卷不存在：%s", surveyId));
+        }
+        return surveyOptional.get();
+    }
+
+    private Survey getRequiredSurveyAndCheckLogin(String surveyId, String tokenValue, boolean creatorOnly) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
+        var userId = userService.checkAndGetUserId(tokenValue);
+        Survey survey = getRequiredSurvey(surveyId);
+        if (creatorOnly && survey.getCreatorId() != userId)
+            throw new SurveyServiceException("当前用户不是该问卷的创建者。");
+        return survey;
+    }
+
+    /**
+     * 尝试以指定登录状态删除问卷。
+     *
+     * @param surveyId   问卷标识符。
+     * @param tokenValue 登录Token。
+     * @throws DatabaseAccessException 如果数据库访问失败。
+     * @throws SurveyServiceException  如果当前用户没有删除权限。
+     * @throws UserServiceException    如果登录状态无效。
+     */
+    public void deleteSurvey(String surveyId, String tokenValue) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
+        getRequiredSurveyAndCheckLogin(surveyId, tokenValue, true);
+        try {
+            surveyDao.deleteSurvey(surveyId);
+        } catch (Exception e) {
+            printer.shortPrintException(e);
+            throw new DatabaseAccessException(e);
+        }
+    }
+
+    public void updateSurvey(String surveyId, String tokenValue, boolean loginRequired, boolean isPublic,
+                             String title, String description, ZonedDateTime startTime, ZonedDateTime endTime) throws SurveyServiceException, DatabaseAccessException, UserServiceException {
+        var survey = getRequiredSurveyAndCheckLogin(surveyId, tokenValue, true);
+        survey.setLoginRequired(loginRequired);
+        survey.setPublic(isPublic);
+        survey.setTitle(title);
+        survey.setDescription(description);
+        survey.setStartTime(startTime);
+        survey.setEndTime(endTime);
+
+        try {
+            surveyDao.updateSurvey(survey);
+        } catch (Exception e) {
+            printer.shortPrintException(e);
+            throw new DatabaseAccessException(e);
+        }
+    }
+
+    /**
+     * 以指定登录状态初始化一个问卷。问卷只有在被初始化后才能开始填写。
+     *
+     * @param surveyId   问卷ID。
+     * @param tokenValue 登录token。
+     * @throws DatabaseAccessException 如果数据库访问失败。
+     * @throws SurveyServiceException  如果当前用户没有操作权限。
+     * @throws UserServiceException    如果登录状态无效。
+     */
+    public void initializeSurvey(String surveyId, String tokenValue) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
+        var survey = getRequiredSurveyAndCheckLogin(surveyId, tokenValue, true);
+        if (!survey.isInitialized()) {
+            survey.setInitialized(true);
+        } else throw new SurveyServiceException("该问卷已经被初始化。");
+
+        try {
+            surveyDao.updateSurvey(survey);
+        } catch (Exception e) {
+            printer.shortPrintException(e);
+            throw new DatabaseAccessException(e);
+        }
+    }
+
+
 }

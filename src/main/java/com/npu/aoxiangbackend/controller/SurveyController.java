@@ -1,5 +1,6 @@
 package com.npu.aoxiangbackend.controller;
 
+import cn.dev33.satoken.context.model.SaRequest;
 import cn.dev33.satoken.util.SaResult;
 import com.npu.aoxiangbackend.exception.business.SurveyServiceException;
 import com.npu.aoxiangbackend.exception.business.UserServiceException;
@@ -33,8 +34,7 @@ public class SurveyController {
         return SaResult.ok().setData(surveys);
     }
 
-    @GetMapping("/create")
-    @PostMapping("/create")
+    @RequestMapping(value = "/create", method = {RequestMethod.POST, RequestMethod.GET})
     public SaResult createSurvey(@RequestParam(required = true) String token) {
         try {
             return SaResult.ok("成功创建问卷。").setData(surveyService.createSurvey(token));
@@ -43,11 +43,30 @@ public class SurveyController {
         }
     }
 
-    @GetMapping("/{surveyId}")
-    @PostMapping("/{surveyId}")
+    @RequestMapping(value = "/{surveyId}", method = {RequestMethod.POST, RequestMethod.GET})
     public SaResult getSurvey(@PathVariable String surveyId, @RequestParam String token) {
         try {
-            return SaResult.ok().setData(surveyService.getSurvey(surveyId, token));
+            return SaResult.ok().setData(surveyService.accessSurvey(surveyId, token));
+        } catch (SurveyServiceException | UserServiceException | DatabaseAccessException e) {
+            return SaResult.error(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/remove/{surveyId}", method = {RequestMethod.POST, RequestMethod.GET})
+    public SaResult removeSurvey(@PathVariable String surveyId, @RequestParam String token) {
+        try {
+            surveyService.deleteSurvey(surveyId, token);
+            return SaResult.ok("成功删除问卷。");
+        } catch (SurveyServiceException | UserServiceException | DatabaseAccessException e) {
+            return SaResult.error(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/init/{surveyId}", method = {RequestMethod.POST, RequestMethod.GET})
+    public SaResult initSurvey(@PathVariable String surveyId, @RequestParam String token) {
+        try {
+            surveyService.initializeSurvey(surveyId, token);
+            return SaResult.ok("成功启用问卷。");
         } catch (SurveyServiceException | UserServiceException | DatabaseAccessException e) {
             return SaResult.error(e.getMessage());
         }

@@ -9,17 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d13a1a2-b276-48b8-b9ef-a379bac3cafe" name="Changes" comment="用户模块重写">
+    <list default="true" id="5d13a1a2-b276-48b8-b9ef-a379bac3cafe" name="Changes" comment="不再使用Hibernate的关联对象映射特性（例如直接在Survey中声明一个User属性），因为这会导致把User的所有属性也传给前端。&#10;问卷创建和查询基本功能。">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/QuestionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/IQuestionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/QuestionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/QuestionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aoxiang-question-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aoxiang-question-backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/BeanConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/config/BeanConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/SurveyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/SurveyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/ISurveyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/ISurveyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/SurveyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/dao/SurveyDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Survey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Survey.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/SurveyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/SurveyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="HTTP Public Environment File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -79,39 +80,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "HTTP Request.All in generated-requests.executor": "Run",
-    "HTTP Request.All in rest-api_1.executor": "Run",
-    "HTTP Request.rest-api_1 | #2.executor": "Run",
-    "HTTP Request.rest-api_1 | 注册.executor": "Run",
-    "HTTP Request.rest-api_1 | 注销.executor": "Run",
-    "HTTP Request.rest-api_1 | 登录.executor": "Run",
-    "HTTP Request.rest-api_1 | 获取用户信息.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Tomcat 10.1.28.executor": "Run",
-    "Tomcat Server.Tomcat 9.0.96.executor": "Run",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/NPU/Web系统开发与实践/Final/Project/aoxiang-question-backend/src/main/java/com/npu/aoxiangbackend/util",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.1512081",
-    "project.structure.side.proportion": "0.46446282",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;HTTP Request.All in generated-requests.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.All in rest-api_1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api_1 | #2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api_1 | 注册.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api_1 | 注销.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api_1 | 登录.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.rest-api_1 | 获取用户信息.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.28.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.96.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/NPU/Web系统开发与实践/Final/Project/aoxiang-question-backend/src/main/java/com/npu/aoxiangbackend/util&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.1512081&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.46446282&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\NPU\Web系统开发与实践\Final\Project\aoxiang-question-backend\src\main\java\com\npu\aoxiangbackend\util" />
@@ -128,20 +129,25 @@
       <recent name="com.npu.aoxiangbackend.config" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="powershell" />
+    </option>
+  </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.96">
     <configuration name="rest-api_1 | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="2" requestIdentifier="#2" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="rest-api_1 | 注册" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" requestIdentifier="注册" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="rest-api_1 | 登录" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="2" requestIdentifier="登录" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="rest-api_1 | 获取用户信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="4" requestIdentifier="获取用户信息" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="rest-api_1 | 注销" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="3" requestIdentifier="注销" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api_1 | 注册" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" requestIdentifier="注册" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api_1 | 登录" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="2" requestIdentifier="登录" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 9.0.96" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.96" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -250,7 +256,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.rest-api_1 | 注销" />
+      <item itemvalue="HTTP Request.rest-api_1 | 登录" />
       <item itemvalue="HTTP Request.rest-api_1 | #2" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.96" />
     </list>
@@ -283,7 +289,13 @@
       <workItem from="1731998779441" duration="12994000" />
       <workItem from="1732030647589" duration="2509000" />
       <workItem from="1732082464393" duration="4814000" />
-      <workItem from="1732089196378" duration="8054000" />
+      <workItem from="1732089196378" duration="8505000" />
+      <workItem from="1732186611140" duration="117000" />
+      <workItem from="1732186973917" duration="44000" />
+      <workItem from="1732198783941" duration="300000" />
+      <workItem from="1732256213576" duration="923000" />
+      <workItem from="1732263272052" duration="90000" />
+      <workItem from="1732355866365" duration="7665000" />
     </task>
     <task id="LOCAL-00001" summary="环境配置">
       <option name="closed" value="true" />
@@ -341,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732089724606</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="不再使用Hibernate的关联对象映射特性（例如直接在Survey中声明一个User属性），因为这会导致把User的所有属性也传给前端。&#10;问卷创建和查询基本功能。">
+      <option name="closed" value="true" />
+      <created>1732108539758</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732108539758</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,6 +384,7 @@
     </ignored-roots>
     <MESSAGE value="环境配置" />
     <MESSAGE value="用户模块重写" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户模块重写" />
+    <MESSAGE value="不再使用Hibernate的关联对象映射特性（例如直接在Survey中声明一个User属性），因为这会导致把User的所有属性也传给前端。&#10;问卷创建和查询基本功能。" />
+    <option name="LAST_COMMIT_MESSAGE" value="不再使用Hibernate的关联对象映射特性（例如直接在Survey中声明一个User属性），因为这会导致把User的所有属性也传给前端。&#10;问卷创建和查询基本功能。" />
   </component>
 </project>
