@@ -26,7 +26,7 @@ public class Question {
      * 表示问题类型。
      */
     @Column(nullable = false)
-    private String type;
+    private QuestionType type;
 
     /**
      * 问题的内容。

@@ -17,5 +17,6 @@
         <!--在这里加载所有映射类，或映射配置文件-->
         <mapping class="com.npu.aoxiangbackend.model.User"/>
         <mapping class="com.npu.aoxiangbackend.model.Survey"/>
+        <mapping class="com.npu.aoxiangbackend.model.Question"/>
     </session-factory>
 </hibernate-configuration>
