@@ -7,7 +7,8 @@ import com.npu.aoxiangbackend.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/api/question")
+@RestController
+@RequestMapping("/api/question")
 public class QuestionController {
     private final QuestionService questionService;
 
