@@ -1,6 +1,5 @@
 package com.npu.aoxiangbackend.controller;
 
-import cn.dev33.satoken.context.model.SaRequest;
 import cn.dev33.satoken.util.SaResult;
 import com.npu.aoxiangbackend.exception.business.SurveyServiceException;
 import com.npu.aoxiangbackend.exception.business.UserServiceException;
@@ -65,7 +64,7 @@ public class SurveyController {
     @RequestMapping(value = "/init/{surveyId}", method = {RequestMethod.POST, RequestMethod.GET})
     public SaResult initSurvey(@PathVariable String surveyId, @RequestParam String token) {
         try {
-            surveyService.initializeSurvey(surveyId, token);
+            surveyService.submitSurvey(surveyId, token);
             return SaResult.ok("成功启用问卷。");
         } catch (SurveyServiceException | UserServiceException | DatabaseAccessException e) {
             return SaResult.error(e.getMessage());

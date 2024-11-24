@@ -27,7 +27,7 @@ public class Survey {
     private boolean isPublic;
 
     @Column(nullable = false)
-    private boolean isInitialized;
+    private boolean isSubmitted;
 
     @Column(nullable = false)
     private ZonedDateTime startTime;
@@ -37,6 +37,11 @@ public class Survey {
 
     @Column(nullable = false)
     private boolean loginRequired;
+
+    @Column(nullable = false)
+    private boolean isChecked;
+
+    private Long checkerId;
 
     @Column(nullable = false)
     private int totalResponses;

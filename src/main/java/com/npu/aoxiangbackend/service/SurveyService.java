@@ -5,6 +5,7 @@ import com.npu.aoxiangbackend.exception.business.SurveyServiceException;
 import com.npu.aoxiangbackend.exception.business.UserServiceException;
 import com.npu.aoxiangbackend.exception.internal.DatabaseAccessException;
 import com.npu.aoxiangbackend.model.Survey;
+import com.npu.aoxiangbackend.model.UserRole;
 import com.npu.aoxiangbackend.util.ColoredPrintStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,7 +59,9 @@ public class SurveyService {
 
         Survey survey = new Survey();
         survey.setCreatorId(userId);
-        survey.setInitialized(false);
+        survey.setSubmitted(false);
+        survey.setChecked(false);
+        survey.setCheckerId(null);
         survey.setLoginRequired(false);
         survey.setPublic(false);
         survey.setTitle("新建问卷");
@@ -90,26 +93,31 @@ public class SurveyService {
     public Survey accessSurvey(String surveyId, String tokenValue) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
         Survey survey = getRequiredSurvey(surveyId);
 
+        boolean submitted = survey.isSubmitted();
+        boolean checked = survey.isChecked();
         boolean loginRequired = survey.isLoginRequired();
         boolean isPublic = survey.isPublic();
-        if (!loginRequired && isPublic) {
-            //如果问卷不需要登录且公开，直接返回即可。
+
+        //问卷已审核、不需要登录且公开，直接放行
+        if (checked && !loginRequired && isPublic)
+            return survey;
+
+        //验证是否登录
+        var user = userService.getRequiredUser(tokenValue);
+
+        //对于管理员和创建者，直接放行
+        if (user.getRole() == UserRole.Admin || user.getId() == survey.getCreatorId()) {
             return survey;
         }
 
-        //验证是否登录。
-        var userId = userService.checkAndGetUserId(tokenValue);
+        //对于其他用户，该问卷必须通过审核且公开
+        if (!checked)
+            throw new SurveyServiceException("该问卷暂未通过审核。");
 
-        //到这里已经登录，如果问卷是公开的直接返回。
-        if (isPublic) {
-            return survey;
-        }
-        //问卷非公开，检查当前登录用户是否为创建者
-        if (userId == survey.getCreatorId())
-            return survey;
+        if (!isPublic)
+            throw new SurveyServiceException("该问卷由其他用户创建，且暂未公开。");
 
-
-        throw new SurveyServiceException("该问卷由其他用户创建，且暂未公开。");
+        return survey;
     }
 
     /**
@@ -136,10 +144,10 @@ public class SurveyService {
     }
 
     private Survey getRequiredSurveyAndCheckLogin(String surveyId, String tokenValue, boolean creatorOnly) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
-        var userId = userService.checkAndGetUserId(tokenValue);
+        var user = userService.getRequiredUser(tokenValue);
         Survey survey = getRequiredSurvey(surveyId);
-        if (creatorOnly && survey.getCreatorId() != userId)
-            throw new SurveyServiceException("当前用户不是该问卷的创建者。");
+        if (user.getRole() != UserRole.Admin && creatorOnly && survey.getCreatorId() != user.getId())
+            throw new SurveyServiceException("当前用户不是该问卷的创建者，也不是管理人员。");
         return survey;
     }
 
@@ -181,7 +189,7 @@ public class SurveyService {
     }
 
     /**
-     * 以指定登录状态初始化一个问卷。问卷只有在被初始化后才能开始填写。
+     * 以指定登录状态尝试提交一个问卷。问卷只有在被提交且审核通过后才能开始填写。
      *
      * @param surveyId   问卷ID。
      * @param tokenValue 登录token。
@@ -189,11 +197,11 @@ public class SurveyService {
      * @throws SurveyServiceException  如果当前用户没有操作权限。
      * @throws UserServiceException    如果登录状态无效。
      */
-    public void initializeSurvey(String surveyId, String tokenValue) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
+    public void submitSurvey(String surveyId, String tokenValue) throws DatabaseAccessException, SurveyServiceException, UserServiceException {
         var survey = getRequiredSurveyAndCheckLogin(surveyId, tokenValue, true);
-        if (!survey.isInitialized()) {
-            survey.setInitialized(true);
-        } else throw new SurveyServiceException("该问卷已经被初始化。");
+        if (!survey.isSubmitted()) {
+            survey.setSubmitted(true);
+        } else throw new SurveyServiceException("该问卷已经提交。");
 
         try {
             surveyDao.updateSurvey(survey);
