@@ -5,8 +5,8 @@ import com.npu.aoxiangbackend.dao.IUserDao;
 import com.npu.aoxiangbackend.exception.business.UserServiceException;
 import com.npu.aoxiangbackend.exception.internal.DatabaseAccessException;
 import com.npu.aoxiangbackend.exception.internal.InternalException;
-import com.npu.aoxiangbackend.model.Option;
 import com.npu.aoxiangbackend.model.User;
+import com.npu.aoxiangbackend.model.UserRole;
 import com.npu.aoxiangbackend.protocol.RegisterRequest;
 import com.npu.aoxiangbackend.util.ColoredPrintStream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +61,7 @@ public class UserService {
         user.setPhone(req.getPhone());
         user.setCreatedAt(ZonedDateTime.now());
         user.setUpdatedAt(ZonedDateTime.now());
+        user.setRole(UserRole.Common);
         user.setDisplayName(req.getDisplayName());
 
         try {
@@ -103,9 +104,12 @@ public class UserService {
         }
     }
 
-    public User getUser(String tokenValue) throws UserServiceException, DatabaseAccessException {
+    public User getRequiredUser(String tokenValue) throws UserServiceException, DatabaseAccessException {
         long userId = checkAndGetUserId(tokenValue);
+        return getRequiredUser(userId);
+    }
 
+    public User getRequiredUser(long userId) throws DatabaseAccessException, UserServiceException {
         Optional<User> userOptional;
         try {
             userOptional = userDao.findUserById(userId);
@@ -114,8 +118,46 @@ public class UserService {
             throw new DatabaseAccessException(e);
         }
         if (userOptional.isEmpty())
-            throw new UserServiceException("无法找到指定用户。");
+            throw new UserServiceException(String.format("ID为 %d 的用户不存在。", userId));
         return userOptional.get();
+    }
+
+    /**
+     * 尝试以指定登录状态获取用户ID为指定值的用户信息。
+     *
+     * @param userId     用户ID。
+     * @param tokenValue 登录token。
+     * @param selfOnly   是否仅允许用户本人登录访问。
+     * @return 用户对象。
+     * @throws DatabaseAccessException 如果数据库访问失败。
+     * @throws UserServiceException    如果用户不存在。
+     */
+    public User getRequiredUserAndCheckLogin(long userId, String tokenValue, boolean selfOnly) throws DatabaseAccessException, UserServiceException {
+        var currentUserId = checkAndGetUserId(tokenValue);
+        var currentUser = getRequiredUser(currentUserId);
+
+        if (selfOnly && currentUserId != userId && currentUser.getRole() != UserRole.Admin)
+            throw new UserServiceException("你没有访问目标用户信息的权限。");
+
+        return getRequiredUser(userId);
+    }
+
+
+    public void deleteUser(long userId, String tokenValue) throws UserServiceException, DatabaseAccessException {
+        var currentUser = getRequiredUser(tokenValue);
+        if (currentUser.getRole() != UserRole.Admin)
+            throw new UserServiceException("只有管理员可以删除其他用户。");
+
+        boolean deleted = false;
+        try {
+            deleted = userDao.deleteUser(userId);
+        } catch (Exception e) {
+            printer.shortPrintException(e);
+            throw new DatabaseAccessException(e);
+        }
+        if (!deleted) {
+            throw new UserServiceException("删除用户失败：用户不存在。");
+        }
     }
 
     public boolean isTokenValid(String token) {

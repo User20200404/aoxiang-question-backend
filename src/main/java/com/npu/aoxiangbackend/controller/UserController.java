@@ -47,27 +47,45 @@ public class UserController {
         return SaResult.ok("注册成功！");
     }
 
-    @GetMapping(value = "/profile")
-    @PostMapping(value = "/profile")
+    @RequestMapping(value = "/profile", method = {RequestMethod.GET, RequestMethod.POST})
     public SaResult getProfile(@RequestParam(required = true) String token) {
-        User user = null;
         try {
-            user = userService.getUser(token);
+            User user = userService.getRequiredUser(token);
             user.setPassword("***");
+            return SaResult.ok().setData(user);
         } catch (UserServiceException | DatabaseAccessException e) {
             return SaResult.error(e.getMessage());
         }
-        return SaResult.ok().setData(user);
+    }
+
+    @RequestMapping(value = "/{userId}", method = {RequestMethod.GET, RequestMethod.POST})
+    public SaResult getUser(@PathVariable long userId, @RequestParam(required = true) String token) {
+        try {
+            User user = userService.getRequiredUserAndCheckLogin(userId, token, true);
+            user.setPassword("***");
+            return SaResult.ok().setData(user);
+        } catch (UserServiceException | DatabaseAccessException e) {
+            return SaResult.error(e.getMessage());
+        }
     }
 
     @GetMapping("/logout")
     public SaResult logout(@RequestParam(required = true) String token) {
         try {
             userService.logoutUser(token);
+            return SaResult.ok("您已成功注销。");
         } catch (UserServiceException | InternalException e) {
             return SaResult.error(e.getMessage());
         }
-        return SaResult.ok();
     }
 
+    @RequestMapping(value = "/delete/{userId}", method = {RequestMethod.GET, RequestMethod.POST})
+    public SaResult delete(@PathVariable long userId, @RequestParam(required = true) String token) {
+        try {
+            userService.deleteUser(userId, token);
+            return SaResult.ok(String.format("成功删除ID为 %d 的用户。", userId));
+        } catch (UserServiceException | DatabaseAccessException e) {
+            return SaResult.error(e.getMessage());
+        }
+    }
 }

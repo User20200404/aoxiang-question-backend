@@ -18,18 +18,18 @@ public class QuestionController {
     }
 
     @RequestMapping("/all")
-    public SaResult enumerateQuestions(@RequestParam(required = true) String surveyId, @RequestParam(required = false) String tokenValue) {
+    public SaResult enumerateQuestions(@RequestParam(required = true) String surveyId, @RequestParam(required = false) String token) {
         try {
-            return SaResult.ok("成功获取所有问题").setData(questionService.getQuestionsOfSurvey(surveyId, tokenValue));
+            return SaResult.ok("成功获取所有问题").setData(questionService.getQuestionsOfSurvey(surveyId, token));
         } catch (QuestionServiceException | DatabaseAccessException e) {
             return SaResult.error(e.getMessage());
         }
     }
 
     @RequestMapping(value = "/delete/{questionId}", method = {RequestMethod.GET, RequestMethod.POST})
-    public SaResult deleteQuestion(@PathVariable(name = "questionId") long questionId, @RequestParam(required = true) String tokenValue) {
+    public SaResult deleteQuestion(@PathVariable(name = "questionId") long questionId, @RequestParam(required = true) String token) {
         try {
-            questionService.removeQuestion(questionId, tokenValue);
+            questionService.removeQuestion(questionId, token);
             return SaResult.ok("成功删除该问题");
         } catch (QuestionServiceException | DatabaseAccessException e) {
             return SaResult.error(e.getMessage());
@@ -37,18 +37,18 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/create", method = {RequestMethod.GET, RequestMethod.POST})
-    public SaResult createQuestion(@RequestParam(required = true) String surveyId, @RequestParam(required = true) String tokenValue) {
+    public SaResult createQuestion(@RequestParam(required = true) String surveyId, @RequestParam(required = true) String token) {
         try {
-            return SaResult.ok("成功创建问题").setData(questionService.createQuestion(surveyId, tokenValue));
+            return SaResult.ok("成功创建问题").setData(questionService.createQuestion(surveyId, token));
         } catch (QuestionServiceException | DatabaseAccessException e) {
             return SaResult.error(e.getMessage());
         }
     }
 
     @RequestMapping(value = "/{questionId}", method = {RequestMethod.GET, RequestMethod.POST})
-    public SaResult getQuestion(@PathVariable(name = "questionId") long questionId, @RequestParam(required = false) String tokenValue) {
+    public SaResult getQuestion(@PathVariable(name = "questionId") long questionId, @RequestParam(required = false) String token) {
         try {
-            return SaResult.ok("成功查询问题").setData(questionService.getQuestion(questionId, tokenValue));
+            return SaResult.ok("成功查询问题").setData(questionService.getQuestion(questionId, token));
         } catch (QuestionServiceException | DatabaseAccessException e) {
             return SaResult.error(e.getMessage());
         }

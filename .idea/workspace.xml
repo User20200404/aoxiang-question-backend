@@ -10,9 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d13a1a2-b276-48b8-b9ef-a379bac3cafe" name="Changes" comment="完成Question实体的增删改查服务">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/UserRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/QuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/SurveyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/SurveyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Survey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/Survey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/SurveyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/SurveyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +31,8 @@
       <list>
         <option value="HTTP Public Environment File" />
         <option value="Interface" />
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -89,7 +96,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 10.1.28.executor": "Run",
-    "Tomcat Server.Tomcat 9.0.96.executor": "Debug",
+    "Tomcat Server.Tomcat 9.0.96.executor": "Run",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -131,9 +138,6 @@
     <configuration name="rest-api_1 | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="2" requestIdentifier="#2" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="rest-api_1 | 获取用户信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="4" requestIdentifier="获取用户信息" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <configuration name="rest-api_1 | 注销" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="3" requestIdentifier="注销" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -141,6 +145,9 @@
       <method v="2" />
     </configuration>
     <configuration name="rest-api_1 | 登录" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="2" requestIdentifier="登录" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api_1 | 获取用户信息" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="4" requestIdentifier="获取用户信息" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 9.0.96" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.96" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -249,7 +256,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.rest-api_1 | 登录" />
+      <item itemvalue="HTTP Request.rest-api_1 | 获取用户信息" />
       <item itemvalue="HTTP Request.rest-api_1 | #2" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.96" />
     </list>
@@ -288,7 +295,8 @@
       <workItem from="1732198783941" duration="300000" />
       <workItem from="1732256213576" duration="923000" />
       <workItem from="1732263272052" duration="90000" />
-      <workItem from="1732355866365" duration="19573000" />
+      <workItem from="1732355866365" duration="19591000" />
+      <workItem from="1732431814470" duration="6653000" />
     </task>
     <task id="LOCAL-00001" summary="环境配置">
       <option name="closed" value="true" />
@@ -370,7 +378,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732380394512</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="完成Question实体的增删改查服务">
+      <option name="closed" value="true" />
+      <created>1732381418164</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732381418164</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,21 +413,5 @@
     <MESSAGE value="完善了Survey部分的功能，创建Question数据库访问" />
     <MESSAGE value="完成Question实体的增删改查服务" />
     <option name="LAST_COMMIT_MESSAGE" value="完成Question实体的增删改查服务" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/SurveyController.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/npu/aoxiangbackend/controller/QuestionController.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

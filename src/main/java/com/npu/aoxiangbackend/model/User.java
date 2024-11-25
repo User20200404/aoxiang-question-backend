@@ -32,4 +32,8 @@ public class User {
 
     @Column(nullable = false)
     private ZonedDateTime updatedAt;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 }

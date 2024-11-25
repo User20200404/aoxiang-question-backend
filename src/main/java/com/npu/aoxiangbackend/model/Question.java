@@ -26,6 +26,7 @@ public class Question {
      * 表示问题类型。
      */
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private QuestionType type;
 
     /**
